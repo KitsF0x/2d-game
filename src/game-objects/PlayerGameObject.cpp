@@ -1,5 +1,25 @@
 #include "PlayerGameObject.hpp"
 
+void kf::PlayerGameObject::handleMovement(double delta)
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        mover.move(this, kf::Direction::NORTH, delta);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        mover.move(this, kf::Direction::SOUTH, delta);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
+        mover.move(this, kf::Direction::WEST, delta);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        mover.move(this, kf::Direction::EAST, delta);
+    }
+}
+
 kf::PlayerGameObject::PlayerGameObject()
 {
     this->playerShape.setSize(sf::Vector2f{64, 128});
@@ -14,10 +34,7 @@ std::string kf::PlayerGameObject::getName() const
 
 void kf::PlayerGameObject::update(double deltaTime)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        this->playerShape.move(0, -100 * deltaTime);
-    }
+    handleMovement(deltaTime);
 }
 
 void kf::PlayerGameObject::draw(sf::RenderWindow &window)
@@ -38,4 +55,9 @@ sf::Vector2f kf::PlayerGameObject::getPosition() const
 sf::FloatRect kf::PlayerGameObject::getHitbox() const
 {
     return this->playerShape.getGlobalBounds();
+}
+
+double kf::PlayerGameObject::getSpeed()
+{
+    return speed;
 }

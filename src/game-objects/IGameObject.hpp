@@ -2,8 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Direction.hpp"
+
 namespace kf
-{   
+{
     class IGameObject
     {
     public:
@@ -14,6 +16,7 @@ namespace kf
         virtual void setPosition(const sf::Vector2f &position) = 0;
         virtual sf::Vector2f getPosition() const = 0;
         virtual sf::FloatRect getHitbox() const = 0;
+        virtual double getSpeed() = 0;
 
         virtual ~IGameObject() = default;
     };

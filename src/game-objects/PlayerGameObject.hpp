@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IGameObject.hpp"
+#include "GameObjectMover.hpp"
 
 namespace kf
 {
@@ -8,6 +9,10 @@ namespace kf
     {
     private:
         sf::RectangleShape playerShape;
+        double speed{100.0f};
+        GameObjectMover mover;
+
+        void handleMovement(double delta);
 
     public:
         PlayerGameObject();
@@ -18,5 +23,6 @@ namespace kf
         void setPosition(const sf::Vector2f &position) override;
         sf::Vector2f getPosition() const override;
         sf::FloatRect getHitbox() const override;
+        double getSpeed() override;
     };
 }

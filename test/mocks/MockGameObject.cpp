@@ -17,14 +17,21 @@ void MockGameObject::draw(sf::RenderWindow &window)
 void MockGameObject::setPosition(const sf::Vector2f &position)
 {
     setPositionCalls++;
+    getPositionReturn = position;
 }
 sf::Vector2f MockGameObject::getPosition() const
 {
     getPositionCalls++;
-    return sf::Vector2f(0, 0);
+    return getPositionReturn;
 }
 sf::FloatRect MockGameObject::getHitbox() const
 {
-    GetHitboxCalls++;
+    getHitboxCalls++;
     return sf::FloatRect(0, 0, 0, 0);
+}
+
+double MockGameObject::getSpeed()
+{
+    getSpeedCalls++;
+    return getSpeedReturn;
 }

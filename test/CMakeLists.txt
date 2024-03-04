@@ -2,6 +2,7 @@ add_executable(${PROJECT_NAME}-tests
     # Test 
     "managers/TEST_GameObjectsManager.cpp" 
     "core/TEST_DeltaTime.cpp"
+    "game-objects/TEST_GameObjectMover.cpp"
 
     # Mocks
     "mocks/MockGameObject.cpp"
