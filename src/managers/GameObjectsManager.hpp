@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "IGameObject.hpp"
-#include "Log.hpp"
 #include "GameObjectsManagerException.hpp"
 
 namespace kf

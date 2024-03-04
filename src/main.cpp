@@ -3,22 +3,12 @@
 
 #include "GameObjectsManager.hpp"
 #include "PlayerGameObject.hpp"
-#include "Log.hpp"
 #include "DeltaTime.hpp"
 
 int main(int argc, char *argv[])
 {
-    kf::Log::enableLogging = true;
-    kf::Log::showTime = true;
-    kf::Log::info("Starting game.");
-
-    kf::Log::info("Creating game objects manager.");
     kf::GameObjectsManager manager{};
-
-    kf::Log::info("Creating player game object.");
     manager.add(std::make_shared<kf::PlayerGameObject>());
-
-    kf::Log::info("Creating SFML window.");
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
     // Delta time
@@ -35,7 +25,6 @@ int main(int argc, char *argv[])
         {
             if (event.type == sf::Event::Closed)
             {
-                kf::Log::info("Detected window close event. Closing window.");
                 window.close();
             }
         }

@@ -4,25 +4,19 @@ void kf::GameObjectsManager::add(std::shared_ptr<IGameObject> gameObject)
 {
     if (std::find(gameObjects.begin(), gameObjects.end(), gameObject) != gameObjects.end())
     {
-        kf::Log::warn("Trying to add already existing game object: " + gameObject->getName());
         throw kf::GameObjectsManagerException(gameObject->getName(), "Game object already exists");
     }
-    kf::Log::info("Adding new game object: " + gameObject->getName());
     gameObjects.push_back(gameObject);
-    kf::Log::info("Current game objects: " + std::to_string(gameObjects.size()));
 }
 
 void kf::GameObjectsManager::remove(std::shared_ptr<IGameObject> gameObject)
 {
-    kf::Log::info("Removing game object: " + gameObject->getName());
-    kf::Log::info("Current game objects: " + std::to_string(gameObjects.size()));
     if (std::find(gameObjects.begin(), gameObjects.end(), gameObject) != gameObjects.end())
     {
         gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
     }
     else
     {
-        kf::Log::error("Trying to remove non existing game object: " + gameObject->getName());
         throw kf::GameObjectsManagerException(gameObject->getName(), "Game object not found");
     }
 }
