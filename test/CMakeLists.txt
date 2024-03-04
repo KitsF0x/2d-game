@@ -1,4 +1,11 @@
-add_executable(${PROJECT_NAME}-tests "managers/TEST_GameObjectsManager.cpp" "mocks/MockGameObject.cpp")
+add_executable(${PROJECT_NAME}-tests
+    # Test 
+    "managers/TEST_GameObjectsManager.cpp" 
+    "core/TEST_DeltaTime.cpp"
+
+    # Mocks
+    "mocks/MockGameObject.cpp"
+)
 target_include_directories(${PROJECT_NAME}-tests PUBLIC managers mocks)
 target_link_libraries(${PROJECT_NAME}-tests PRIVATE 
     # Test
@@ -8,5 +15,5 @@ target_link_libraries(${PROJECT_NAME}-tests PRIVATE
     # Components
     managers 
     game-objects
-    
+    core
 )

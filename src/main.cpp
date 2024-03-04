@@ -4,6 +4,7 @@
 #include "GameObjectsManager.hpp"
 #include "PlayerGameObject.hpp"
 #include "Log.hpp"
+#include "DeltaTime.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -20,8 +21,15 @@ int main(int argc, char *argv[])
     kf::Log::info("Creating SFML window.");
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
+    // Delta time
+    kf::DeltaTime deltaTime;
+    sf::Clock deltaClock;
+    sf::Time firstMeasurement;
+    sf::Time secondMeasurement;
+
     while (window.isOpen())
     {
+        firstMeasurement = deltaClock.getElapsedTime();
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -33,10 +41,12 @@ int main(int argc, char *argv[])
         }
         window.clear();
 
-        manager.updateAll(1);
+        manager.updateAll(deltaTime.getDeltaTime());
         manager.drawAll(window);
 
         window.display();
+        secondMeasurement = deltaClock.getElapsedTime();
+        deltaTime.calculateDeltaTime(firstMeasurement, secondMeasurement);
     }
 
     return 0;
