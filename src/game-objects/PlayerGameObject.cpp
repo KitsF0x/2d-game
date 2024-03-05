@@ -25,6 +25,7 @@ kf::PlayerGameObject::PlayerGameObject()
     this->playerShape.setSize(sf::Vector2f{64, 128});
     this->playerShape.setFillColor(sf::Color::Green);
     this->playerShape.setPosition(0, 0);
+    this->playerShape.setOrigin(sf::Vector2f{32, 64});
 }
 
 std::string kf::PlayerGameObject::getName() const

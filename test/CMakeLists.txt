@@ -3,6 +3,7 @@ add_executable(${PROJECT_NAME}-tests
     "managers/TEST_GameObjectsManager.cpp" 
     "managers/TEST_TexturesManager.cpp"
     "managers/TEST_TilesManager.cpp"
+    "core/TEST_Camera.cpp"
     "core/TEST_DeltaTime.cpp"
     "game-objects/TEST_GameObjectMover.cpp"
 

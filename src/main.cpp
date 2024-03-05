@@ -8,6 +8,7 @@
 #include "TexturesManager.hpp"
 #include "TilesManager.hpp"
 #include "GrassTile.hpp"
+#include "Camera.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +34,8 @@ int main(int argc, char *argv[])
     tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{0.0f, 128.0f});
     tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{128.0f, 128.0f});
 
+    kf::Camera camera{window};
+    std::shared_ptr<kf::IGameObject> player = gameObjectsManager.getGameObjectsByName("Player").at(0);
     while (window.isOpen())
     {
         firstMeasurement = deltaClock.getElapsedTime();
@@ -43,14 +46,28 @@ int main(int argc, char *argv[])
             {
                 window.close();
             }
+
+            if (event.type == sf::Event::MouseWheelMoved)
+            {
+                if (event.mouseWheel.delta == 1)
+                {
+                    camera.zoomIn();
+                }   
+                else if (event.mouseWheel.delta == -1)
+                {
+                    camera.zoomOut();
+                }
+            }
         }
+
+        // Render
         window.clear();
-
+        camera.update(player->getPosition());
         tilesManager.drawAll(window);
-
         gameObjectsManager.updateAll(deltaTime.getDeltaTime());
         gameObjectsManager.drawAll(window);
 
+        // Delta time
         window.display();
         secondMeasurement = deltaClock.getElapsedTime();
         deltaTime.calculateDeltaTime(firstMeasurement, secondMeasurement);
