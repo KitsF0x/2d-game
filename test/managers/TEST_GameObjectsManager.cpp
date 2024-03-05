@@ -11,9 +11,10 @@ TEST_CASE("WhenCalled_Add_ShouldIncrementSizeOfTheManager")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
 
     // Act
-    manager.add(std::make_shared<MockGameObject>());
+    manager.add(std::make_shared<MockGameObject>(), texturesManager);
 
     // Assert
     REQUIRE(manager.size() == 1);
@@ -23,10 +24,11 @@ TEST_CASE("WhenCalled_Add_ShouldAddGameObjectToTheManager")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
 
     // Act
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
 
     // Assert
     REQUIRE(manager.getGameObjectsByName("MockGameObject").at(0) == gameObject);
@@ -36,8 +38,9 @@ TEST_CASE("WhenCalled_UpdateAll_ShouldCallUpdateOnAllGameObjects")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
 
     // Act
     manager.updateAll(1.0f);
@@ -50,8 +53,9 @@ TEST_CASE("WhenCalled_DrawAll_ShouldCallDrawOnAllGameObjects")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
     sf::RenderWindow window{};
     // Act
     manager.drawAll(window);
@@ -64,9 +68,10 @@ TEST_CASE("WhenCalled_GetGameObjectsByName_ShouldReturnAllGameObjectsWithGivenNa
 {
     // Arrange
     kf::GameObjectsManager manager;
-    manager.add(std::make_shared<MockGameObject>());
-    manager.add(std::make_shared<MockGameObject>());
-    manager.add(std::make_shared<MockGameObject>());
+    kf::TexturesManager texturesManager{};
+    manager.add(std::make_shared<MockGameObject>(), texturesManager);
+    manager.add(std::make_shared<MockGameObject>(), texturesManager);
+    manager.add(std::make_shared<MockGameObject>(), texturesManager);
 
     // Act
     auto result = manager.getGameObjectsByName("MockGameObject");
@@ -80,11 +85,12 @@ TEST_CASE("WhenCalled_Add_ShouldNotAddGameObjectToTheManagerIfItAlreadyExists")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
 
     // Act
-    REQUIRE_THROWS(manager.add(gameObject));
+    REQUIRE_THROWS(manager.add(gameObject, texturesManager));
     auto result = manager.getGameObjectsByName("MockGameObject");
 
     // Assert
@@ -95,18 +101,20 @@ TEST_CASE("WhenCalled_Add_ShouldThrowGameObjectsManagerExceptionIfGameObjectAlre
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
 
-    REQUIRE_THROWS_AS(manager.add(gameObject), kf::GameObjectsManagerException);
+    REQUIRE_THROWS_AS(manager.add(gameObject, texturesManager), kf::GameObjectsManagerException);
 }
 
 TEST_CASE("WhenCalled_Remove_ShouldDecrementSizeOfTheManager")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
     // Act
     manager.remove(gameObject);
 
@@ -118,8 +126,9 @@ TEST_CASE("WhenCalled_Remove_ShouldRemoveGameObjectFromTheManager")
 {
     // Arrange
     kf::GameObjectsManager manager;
+    kf::TexturesManager texturesManager{};
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
-    manager.add(gameObject);
+    manager.add(gameObject, texturesManager);
 
     // Act
     manager.remove(gameObject);
@@ -132,7 +141,8 @@ TEST_CASE("WhenCalled_Remove_ShouldNotDecrementSizeOfTheManagerIfGameObjectDoesN
 {
     // Arrange
     kf::GameObjectsManager manager;
-    manager.add(std::make_shared<MockGameObject>());
+    kf::TexturesManager texturesManager{};
+    manager.add(std::make_shared<MockGameObject>(), texturesManager);
 
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
 

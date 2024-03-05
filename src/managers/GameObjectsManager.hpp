@@ -14,7 +14,7 @@ namespace kf
         std::vector<std::shared_ptr<IGameObject>> gameObjects;
 
     public:
-        void add(std::shared_ptr<IGameObject> gameObject);
+        void add(std::shared_ptr<IGameObject> gameObject, kf::TexturesManager &manager);
         void remove(std::shared_ptr<IGameObject> gameObject);
         void updateAll(double deltaTime);
         void drawAll(sf::RenderWindow &window);

@@ -35,3 +35,8 @@ double MockGameObject::getSpeed()
     getSpeedCalls++;
     return getSpeedReturn;
 }
+
+void MockGameObject::setTextureFromManager(kf::TexturesManager &manager)
+{
+    setTextureFromManagerCalls++;
+}

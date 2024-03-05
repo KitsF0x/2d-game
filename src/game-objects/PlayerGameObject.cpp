@@ -62,3 +62,8 @@ double kf::PlayerGameObject::getSpeed()
 {
     return speed;
 }
+
+void kf::PlayerGameObject::setTextureFromManager(kf::TexturesManager &manager)
+{
+    
+}

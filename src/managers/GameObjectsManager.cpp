@@ -1,11 +1,12 @@
 #include "GameObjectsManager.hpp"
 
-void kf::GameObjectsManager::add(std::shared_ptr<IGameObject> gameObject)
+void kf::GameObjectsManager::add(std::shared_ptr<IGameObject> gameObject,  kf::TexturesManager &manager)
 {
     if (std::find(gameObjects.begin(), gameObjects.end(), gameObject) != gameObjects.end())
     {
         throw kf::GameObjectsManagerException(gameObject->getName(), "Game object already exists");
     }
+    gameObject->setTextureFromManager(manager);
     gameObjects.push_back(gameObject);
 }
 

@@ -11,6 +11,7 @@
 #include "SandTile.hpp"
 #include "Camera.hpp"
 #include "RandomTileGenerator.hpp"
+#include "RockGameObject.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -19,8 +20,6 @@ int main(int argc, char *argv[])
     kf::TexturesLoader texturesLoader{};
     texturesLoader.loadTexturesFromDirectory("../../../assets/textures/", texturesManager);
 
-    kf::GameObjectsManager gameObjectsManager{};
-    gameObjectsManager.add(std::make_shared<kf::PlayerGameObject>());
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
     // Delta time
@@ -34,8 +33,14 @@ int main(int argc, char *argv[])
     kf::RandomTileGenerator randomTileGenerator{20, 20};
     randomTileGenerator.generate(tilesManager, {0.0f, 0.0f});
 
+    // Game objects
+    kf::GameObjectsManager gameObjectsManager{};
+    gameObjectsManager.add(std::make_shared<kf::PlayerGameObject>(), texturesManager);
+    gameObjectsManager.add(std::make_shared<kf::RockGameObject>(), texturesManager);
+
     kf::Camera camera{window};
     std::shared_ptr<kf::IGameObject> player = gameObjectsManager.getGameObjectsByName("Player").at(0);
+
     while (window.isOpen())
     {
         firstMeasurement = deltaClock.getElapsedTime();

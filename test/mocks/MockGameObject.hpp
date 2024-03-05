@@ -15,6 +15,7 @@ public:
     mutable std::uintmax_t getPositionCalls{0};
     mutable std::uintmax_t getHitboxCalls{0};
     mutable std::uintmax_t getSpeedCalls{0};
+    mutable std::uintmax_t setTextureFromManagerCalls{0};
 
     double getSpeedReturn{0};
     sf::Vector2f getPositionReturn{0.0f, 0.0f};
@@ -27,4 +28,5 @@ public:
     sf::Vector2f getPosition() const override;
     sf::FloatRect getHitbox() const override;
     double getSpeed() override;
+    void setTextureFromManager(kf::TexturesManager &manager) override;
 };

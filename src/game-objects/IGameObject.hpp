@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Direction.hpp"
+#include "TexturesManager.hpp"
 
 namespace kf
 {
@@ -17,6 +18,7 @@ namespace kf
         virtual sf::Vector2f getPosition() const = 0;
         virtual sf::FloatRect getHitbox() const = 0;
         virtual double getSpeed() = 0;
+        virtual void setTextureFromManager(kf::TexturesManager &manager) = 0;
 
         virtual ~IGameObject() = default;
     };
