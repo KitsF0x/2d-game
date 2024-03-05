@@ -61,3 +61,19 @@ TEST_CASE("WhenCalled_DrawAll_ShouldCallDrawOnAllTiles", "[TilesManager]")
     REQUIRE(tile->drawCalls == 1);
     REQUIRE(tile2->drawCalls == 1);
 }
+
+TEST_CASE("WhenCalled_GetTileById_ShouldReturnTileById", "[TilesManager]")
+{
+    // Arrange
+    sf::RenderWindow window{};
+    kf::TexturesManager texturesManager{};
+    kf::TilesManager manager{texturesManager};
+    std::shared_ptr<MockTile> tile = std::make_shared<MockTile>();
+    manager.add(tile, sf::Vector2f{0.0f, 0.0f});
+
+    // Act
+    auto tile2 = manager.getTileById(0);
+
+    // Assert
+    REQUIRE(tile2 == tile);
+}

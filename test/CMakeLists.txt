@@ -6,6 +6,7 @@ add_executable(${PROJECT_NAME}-tests
     "core/TEST_Camera.cpp"
     "core/TEST_DeltaTime.cpp"
     "game-objects/TEST_GameObjectMover.cpp"
+    "map/TEST_RandomTileGenerator.cpp"
 
     # Mocks
     "mocks/MockGameObject.cpp"
@@ -22,4 +23,5 @@ target_link_libraries(${PROJECT_NAME}-tests PRIVATE
     game-objects
     core
     tiles
+    map
 )

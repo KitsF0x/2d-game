@@ -8,7 +8,9 @@
 #include "TexturesManager.hpp"
 #include "TilesManager.hpp"
 #include "GrassTile.hpp"
+#include "SandTile.hpp"
 #include "Camera.hpp"
+#include "RandomTileGenerator.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -29,10 +31,8 @@ int main(int argc, char *argv[])
 
     // Tiles
     kf::TilesManager tilesManager{texturesManager};
-    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{0.0f, 0.0f});
-    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{128.0f, 0.0f});
-    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{0.0f, 128.0f});
-    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{128.0f, 128.0f});
+    kf::RandomTileGenerator randomTileGenerator{20, 20};
+    randomTileGenerator.generate(tilesManager, {0.0f, 0.0f});
 
     kf::Camera camera{window};
     std::shared_ptr<kf::IGameObject> player = gameObjectsManager.getGameObjectsByName("Player").at(0);
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
                 if (event.mouseWheel.delta == 1)
                 {
                     camera.zoomIn();
-                }   
+                }
                 else if (event.mouseWheel.delta == -1)
                 {
                     camera.zoomOut();

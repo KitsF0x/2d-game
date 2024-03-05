@@ -20,6 +20,11 @@ void kf::TilesManager::drawAll(sf::RenderWindow &window)
     }
 }
 
+std::shared_ptr<ITile> kf::TilesManager::getTileById(std::size_t index)
+{
+    return tiles.at(index);
+}
+
 std::size_t kf::TilesManager::size() const
 {
     return tiles.size();
