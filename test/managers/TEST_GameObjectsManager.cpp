@@ -52,9 +52,9 @@ TEST_CASE("WhenCalled_DrawAll_ShouldCallDrawOnAllGameObjects")
     kf::GameObjectsManager manager;
     std::shared_ptr<MockGameObject> gameObject = std::make_shared<MockGameObject>();
     manager.add(gameObject);
-
+    sf::RenderWindow window{};
     // Act
-    manager.drawAll(sf::RenderWindow());
+    manager.drawAll(window);
 
     // Assert
     REQUIRE(gameObject->drawCalls == 1);

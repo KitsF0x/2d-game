@@ -4,11 +4,20 @@
 #include "GameObjectsManager.hpp"
 #include "PlayerGameObject.hpp"
 #include "DeltaTime.hpp"
+#include "TexturesLoader.hpp"
+#include "TexturesManager.hpp"
+#include "TilesManager.hpp"
+#include "GrassTile.hpp"
 
 int main(int argc, char *argv[])
 {
-    kf::GameObjectsManager manager{};
-    manager.add(std::make_shared<kf::PlayerGameObject>());
+    // Textures
+    kf::TexturesManager texturesManager{};
+    kf::TexturesLoader texturesLoader{};
+    texturesLoader.loadTexturesFromDirectory("../../../assets/textures/", texturesManager);
+
+    kf::GameObjectsManager gameObjectsManager{};
+    gameObjectsManager.add(std::make_shared<kf::PlayerGameObject>());
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
     // Delta time
@@ -16,6 +25,13 @@ int main(int argc, char *argv[])
     sf::Clock deltaClock;
     sf::Time firstMeasurement;
     sf::Time secondMeasurement;
+
+    // Tiles
+    kf::TilesManager tilesManager{texturesManager};
+    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{0.0f, 0.0f});
+    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{128.0f, 0.0f});
+    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{0.0f, 128.0f});
+    tilesManager.add(std::make_shared<GrassTile>(), sf::Vector2f{128.0f, 128.0f});
 
     while (window.isOpen())
     {
@@ -30,8 +46,10 @@ int main(int argc, char *argv[])
         }
         window.clear();
 
-        manager.updateAll(deltaTime.getDeltaTime());
-        manager.drawAll(window);
+        tilesManager.drawAll(window);
+
+        gameObjectsManager.updateAll(deltaTime.getDeltaTime());
+        gameObjectsManager.drawAll(window);
 
         window.display();
         secondMeasurement = deltaClock.getElapsedTime();
