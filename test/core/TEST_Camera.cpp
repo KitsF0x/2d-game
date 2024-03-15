@@ -2,7 +2,7 @@
 
 #include "Camera.hpp"
 
-TEST_CASE("WhenCalled_Constructor_ShouldSetViewSize")
+TEST_CASE("WhenCalled_Constructor_ShouldSetViewSize", "[Camera]")
 {
     // Arrange
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML Camera Test");
@@ -16,7 +16,7 @@ TEST_CASE("WhenCalled_Constructor_ShouldSetViewSize")
     REQUIRE(viewSize.y == window.getSize().y);
 }
 
-TEST_CASE("WhenCalled_Constructor_ShouldSetWindowCenterToZero")
+TEST_CASE("WhenCalled_Constructor_ShouldSetWindowCenterToZero", "[Camera]")
 {
     // Arrange
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Camera Test");
@@ -30,7 +30,7 @@ TEST_CASE("WhenCalled_Constructor_ShouldSetWindowCenterToZero")
     REQUIRE(viewCenter.y == 0.0f);
 }
 
-TEST_CASE("WhenCalled_Update_ShouldSetCenterToGivenPosition")
+TEST_CASE("WhenCalled_Update_ShouldSetCenterToGivenPosition", "[Camera]")
 {
     // Arrange
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Camera Test");
@@ -46,7 +46,7 @@ TEST_CASE("WhenCalled_Update_ShouldSetCenterToGivenPosition")
     REQUIRE(viewCenter.y == newPosition.y);
 }
 
-TEST_CASE("WhenCalled_Update_ShouldCallSetViewOnRenderWindow")
+TEST_CASE("WhenCalled_Update_ShouldCallSetViewOnRenderWindow", "[Camera]")
 {
     // Arrange
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Camera Test");

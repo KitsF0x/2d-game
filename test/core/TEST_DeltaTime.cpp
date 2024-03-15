@@ -3,7 +3,7 @@
 
 #include "DeltaTime.hpp"
 
-TEST_CASE("WhenCalled_CalculateDeltaTime_ShouldSetDeltaTime")
+TEST_CASE("WhenCalled_CalculateDeltaTime_ShouldSetDeltaTime", "[DeltaTime]")
 {
     // Arrange
     kf::DeltaTime deltaTime;

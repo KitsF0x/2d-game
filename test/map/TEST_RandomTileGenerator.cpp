@@ -2,7 +2,7 @@
 
 #include "RandomTileGenerator.hpp"
 
-TEST_CASE("WhenCalled_Constructor_ShouldXCountAndYCount")
+TEST_CASE("WhenCalled_Constructor_ShouldXCountAndYCount", "[RandomTileGenerator]")
 {
     // Arrange
     kf::RandomTileGenerator rtg(10, 20);
@@ -12,7 +12,7 @@ TEST_CASE("WhenCalled_Constructor_ShouldXCountAndYCount")
     REQUIRE(rtg.getYCount() == 20);
 }
 
-TEST_CASE("WhenCalled_Generate_ShouldGenerateCorrectAmountOfTiles")
+TEST_CASE("WhenCalled_Generate_ShouldGenerateCorrectAmountOfTiles", "[RandomTileGenerator]")
 {
     // Arrange
     kf::RandomTileGenerator rtg(10, 20);
@@ -26,7 +26,7 @@ TEST_CASE("WhenCalled_Generate_ShouldGenerateCorrectAmountOfTiles")
     REQUIRE(tilesManager.size() == 200);
 }
 
-TEST_CASE("WhenCalled_Generate_ShouldGenerateTilesOnGivenPosition")
+TEST_CASE("WhenCalled_Generate_ShouldGenerateTilesOnGivenPosition", "[RandomTileGenerator]")
 {
     // Arrange
     kf::RandomTileGenerator rtg(1, 1);
@@ -42,7 +42,7 @@ TEST_CASE("WhenCalled_Generate_ShouldGenerateTilesOnGivenPosition")
     REQUIRE(tilesManager.getTileById(0)->getPosition() == sf::Vector2f{0.0f, 0.0f});
 }
 
-TEST_CASE("WhenCalled_Generate_ShouldGenerateOffsetTilesBySize")
+TEST_CASE("WhenCalled_Generate_ShouldGenerateOffsetTilesBySize", "[RandomTileGenerator]")
 {
     // Arrange
     kf::RandomTileGenerator rtg(2, 2);

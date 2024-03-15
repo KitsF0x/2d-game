@@ -2,7 +2,7 @@
 
 #include "TexturesManager.hpp"
 
-TEST_CASE("WhenCalled_AddTexture_ShouldIncrementSizeOfTheManager")
+TEST_CASE("WhenCalled_AddTexture_ShouldIncrementSizeOfTheManager", "[TexturesManager]")
 {
     // Arrange
     kf::TexturesManager texturesManager;
@@ -15,7 +15,7 @@ TEST_CASE("WhenCalled_AddTexture_ShouldIncrementSizeOfTheManager")
     REQUIRE(texturesManager.size() == 1);
 }
 
-TEST_CASE("WhenCalled_GetTexture_ShouldReturnTextureWithGivenName")
+TEST_CASE("WhenCalled_GetTexture_ShouldReturnTextureWithGivenName", "[TexturesManager]")
 {
     // Arrange
     kf::TexturesManager texturesManager;
@@ -26,7 +26,7 @@ TEST_CASE("WhenCalled_GetTexture_ShouldReturnTextureWithGivenName")
     REQUIRE_NOTHROW(texturesManager.getTexture("test"));
 }
 
-TEST_CASE("WhenCalled_GetTexture_ShouldThrowTexturesManagerExceptionWhenTextureWithGivenNameWasNotFound")
+TEST_CASE("WhenCalled_GetTexture_ShouldThrowTexturesManagerExceptionWhenTextureWithGivenNameWasNotFound", "[TexturesManager]")
 {
     // Arrange
     kf::TexturesManager texturesManager;
@@ -35,7 +35,7 @@ TEST_CASE("WhenCalled_GetTexture_ShouldThrowTexturesManagerExceptionWhenTextureW
     REQUIRE_THROWS_AS(texturesManager.getTexture("test"), kf::TexturesManagerException);
 }
 
-TEST_CASE("WhenCalled_RemoveTexture_ShouldDecrementSizeOfTexture")
+TEST_CASE("WhenCalled_RemoveTexture_ShouldDecrementSizeOfTexture", "[TexturesManager]")
 {
     // Arrange
     kf::TexturesManager texturesManager;
@@ -49,7 +49,7 @@ TEST_CASE("WhenCalled_RemoveTexture_ShouldDecrementSizeOfTexture")
     REQUIRE(texturesManager.size() == 0);
 }
 
-TEST_CASE("WhenCalled_RemoveTexture_ShouldThrowTexturesManagerExceptionWhenTextureWithGivenNameWasNotFound")
+TEST_CASE("WhenCalled_RemoveTexture_ShouldThrowTexturesManagerExceptionWhenTextureWithGivenNameWasNotFound", "[TexturesManager]")
 {
     // Arrange
     kf::TexturesManager texturesManager;

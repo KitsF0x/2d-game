@@ -4,7 +4,7 @@
 #include "Direction.hpp"
 #include "GameObjectMover.hpp"
 
-TEST_CASE("WhenCalled_Move_ShouldCallGetSpeedOnTheGameObjectWhenDirectionIsAnyDirection")
+TEST_CASE("WhenCalled_Move_ShouldCallGetSpeedOnTheGameObjectWhenDirectionIsAnyDirection", "[GameObjectMover]")
 {
     // Arrange
     kf::GameObjectMover mover;
@@ -20,7 +20,7 @@ TEST_CASE("WhenCalled_Move_ShouldCallGetSpeedOnTheGameObjectWhenDirectionIsAnyDi
     REQUIRE(mock->getSpeedCalls == 4);
 }
 
-TEST_CASE("WhenCalled_Move_ShouldCallSetPositionOnTheGameObjectWhenDirectionIsAnyDirection")
+TEST_CASE("WhenCalled_Move_ShouldCallSetPositionOnTheGameObjectWhenDirectionIsAnyDirection", "[GameObjectMover]")
 {
     // Arrange
     kf::GameObjectMover mover;
@@ -36,7 +36,7 @@ TEST_CASE("WhenCalled_Move_ShouldCallSetPositionOnTheGameObjectWhenDirectionIsAn
     REQUIRE(mock->setPositionCalls == 4);
 }
 
-TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToNorthBySpeedOfGameObject")
+TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToNorthBySpeedOfGameObject", "[GameObjectMover]")
 {
     // Arrange
     float speed{10.0f};
@@ -52,7 +52,7 @@ TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToNorthBySpeedOfGameObject")
     REQUIRE(mock->getPosition() == sf::Vector2f{0.0f, -speed});
 }
 
-TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToSouthBySpeedOfGameObject")
+TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToSouthBySpeedOfGameObject", "[GameObjectMover]")
 {
     // Arrange
     float speed{10.0f};
@@ -67,7 +67,7 @@ TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToSouthBySpeedOfGameObject")
     REQUIRE(mock->getPosition() == sf::Vector2f{0.0f, speed});
 }
 
-TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToEastBySpeedOfGameObject")
+TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToEastBySpeedOfGameObject", "[GameObjectMover]")
 {
     // Arrange
     float speed{10.0f};
@@ -81,7 +81,7 @@ TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToEastBySpeedOfGameObject")
     // Assert
     REQUIRE(mock->getPosition() == sf::Vector2f{speed, 0.0f});
 }
-TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToWestBySpeedOfGameObject")
+TEST_CASE("WhenCalled_Move_ShouldMoveGameObjectToWestBySpeedOfGameObject", "[GameObjectMover]")
 {
     // Arrange
     float speed{10.0f};

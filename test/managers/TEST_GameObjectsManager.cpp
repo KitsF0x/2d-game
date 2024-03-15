@@ -5,7 +5,7 @@
 #include "MockGameObject.hpp"
 #include "GameObjectsManagerException.hpp"
 
-TEST_CASE("WhenCalled_Add_ShouldIncrementSizeOfTheManager")
+TEST_CASE("WhenCalled_Add_ShouldIncrementSizeOfTheManager", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -18,7 +18,7 @@ TEST_CASE("WhenCalled_Add_ShouldIncrementSizeOfTheManager")
     REQUIRE(manager.size() == 1);
 }
 
-TEST_CASE("WhenCalled_Add_ShouldAddGameObjectToTheManager")
+TEST_CASE("WhenCalled_Add_ShouldAddGameObjectToTheManager", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -32,7 +32,7 @@ TEST_CASE("WhenCalled_Add_ShouldAddGameObjectToTheManager")
     REQUIRE(manager.getGameObjectsByName("MockGameObject").at(0) == gameObject);
 }
 
-TEST_CASE("WhenCalled_UpdateAll_ShouldCallUpdateOnAllGameObjects")
+TEST_CASE("WhenCalled_UpdateAll_ShouldCallUpdateOnAllGameObjects", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -47,7 +47,7 @@ TEST_CASE("WhenCalled_UpdateAll_ShouldCallUpdateOnAllGameObjects")
     REQUIRE(gameObject->updateCalls == 1);
 }
 
-TEST_CASE("WhenCalled_DrawAll_ShouldCallDrawOnAllGameObjects")
+TEST_CASE("WhenCalled_DrawAll_ShouldCallDrawOnAllGameObjects", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -62,7 +62,7 @@ TEST_CASE("WhenCalled_DrawAll_ShouldCallDrawOnAllGameObjects")
     REQUIRE(gameObject->drawCalls == 1);
 }
 
-TEST_CASE("WhenCalled_GetGameObjectsByName_ShouldReturnAllGameObjectsWithGivenName")
+TEST_CASE("WhenCalled_GetGameObjectsByName_ShouldReturnAllGameObjectsWithGivenName", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -79,7 +79,7 @@ TEST_CASE("WhenCalled_GetGameObjectsByName_ShouldReturnAllGameObjectsWithGivenNa
     REQUIRE(result.size() == 3);
 }
 
-TEST_CASE("WhenCalled_Add_ShouldNotAddGameObjectToTheManagerIfItAlreadyExists")
+TEST_CASE("WhenCalled_Add_ShouldNotAddGameObjectToTheManagerIfItAlreadyExists", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -95,7 +95,7 @@ TEST_CASE("WhenCalled_Add_ShouldNotAddGameObjectToTheManagerIfItAlreadyExists")
     REQUIRE(result.size() == 1);
 }
 
-TEST_CASE("WhenCalled_Add_ShouldThrowGameObjectsManagerExceptionIfGameObjectAlreadyExists")
+TEST_CASE("WhenCalled_Add_ShouldThrowGameObjectsManagerExceptionIfGameObjectAlreadyExists", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -106,7 +106,7 @@ TEST_CASE("WhenCalled_Add_ShouldThrowGameObjectsManagerExceptionIfGameObjectAlre
     REQUIRE_THROWS_AS(manager.add(gameObject, texturesManager), kf::GameObjectsManagerException);
 }
 
-TEST_CASE("WhenCalled_Remove_ShouldDecrementSizeOfTheManager")
+TEST_CASE("WhenCalled_Remove_ShouldDecrementSizeOfTheManager", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -120,7 +120,7 @@ TEST_CASE("WhenCalled_Remove_ShouldDecrementSizeOfTheManager")
     REQUIRE(manager.size() == 0);
 }
 
-TEST_CASE("WhenCalled_Remove_ShouldRemoveGameObjectFromTheManager")
+TEST_CASE("WhenCalled_Remove_ShouldRemoveGameObjectFromTheManager", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -135,7 +135,7 @@ TEST_CASE("WhenCalled_Remove_ShouldRemoveGameObjectFromTheManager")
     REQUIRE(manager.getGameObjectsByName("MockGameObject").size() == 0);
 }
 
-TEST_CASE("WhenCalled_Remove_ShouldNotDecrementSizeOfTheManagerIfGameObjectDoesNotExist")
+TEST_CASE("WhenCalled_Remove_ShouldNotDecrementSizeOfTheManagerIfGameObjectDoesNotExist", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
@@ -151,7 +151,7 @@ TEST_CASE("WhenCalled_Remove_ShouldNotDecrementSizeOfTheManagerIfGameObjectDoesN
     REQUIRE(manager.size() == 1);
 }
 
-TEST_CASE("WhenCalled_Remove_ShouldThrowGameObjectsManagerExceptionIfGameObjectDoesNotExist")
+TEST_CASE("WhenCalled_Remove_ShouldThrowGameObjectsManagerExceptionIfGameObjectDoesNotExist", "[GameObjectsManager]")
 {
     // Arrange
     kf::GameObjectsManager manager;
