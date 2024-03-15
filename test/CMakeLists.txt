@@ -21,7 +21,7 @@ target_link_libraries(${PROJECT_NAME}-tests PRIVATE
     # Components
     managers 
     game-objects
-    core
+    game-system
     tiles
     map
 )
