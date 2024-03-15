@@ -4,6 +4,7 @@
 
 #include "GrassTile.hpp"
 #include "SandTile.hpp"
+#include "TileConsts.hpp"
 
 namespace kf
 {

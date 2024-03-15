@@ -56,7 +56,7 @@ TEST_CASE("WhenCalled_Generate_ShouldGenerateOffsetTilesBySize", "[RandomTileGen
 
     // Assert
     REQUIRE(tilesManager.getTileById(0)->getPosition() == sf::Vector2f{0.0f, 0.0f});
-    REQUIRE(tilesManager.getTileById(1)->getPosition() == sf::Vector2f{0.0f, static_cast<float>(ITile::TILE_SIZE)});
-    REQUIRE(tilesManager.getTileById(2)->getPosition() == sf::Vector2f{static_cast<float>(ITile::TILE_SIZE), 0.0f});
-    REQUIRE(tilesManager.getTileById(3)->getPosition() == sf::Vector2f{static_cast<float>(ITile::TILE_SIZE), static_cast<float>(ITile::TILE_SIZE)});
+    REQUIRE(tilesManager.getTileById(1)->getPosition() == sf::Vector2f{0.0f, static_cast<float>(kf::TileConsts::TILE_SIZE)});
+    REQUIRE(tilesManager.getTileById(2)->getPosition() == sf::Vector2f{static_cast<float>(kf::TileConsts::TILE_SIZE), 0.0f});
+    REQUIRE(tilesManager.getTileById(3)->getPosition() == sf::Vector2f{static_cast<float>(kf::TileConsts::TILE_SIZE), static_cast<float>(kf::TileConsts::TILE_SIZE)});
 }

@@ -12,13 +12,17 @@ void kf::RandomTileGenerator::generate(kf::TilesManager &manager, const sf::Vect
         for (std::uint32_t y = 0; y < yCount; y++)
         {
             int random = rand() % 2;
+
+            float tilePosX = (position.x + x) * TileConsts::TILE_SIZE;
+            float tilePosY = (position.y + y) * TileConsts::TILE_SIZE;
+            sf::Vector2f tilePos(tilePosX, tilePosY);
             if (random == 0)
             {
-                manager.add(std::make_shared<GrassTile>(), sf::Vector2f((position.x + x) * ITile::TILE_SIZE, (position.y + y) * ITile::TILE_SIZE));
+                manager.add(std::make_shared<GrassTile>(), tilePos);
             }
             else if (random == 1)
             {
-                manager.add(std::make_shared<SandTile>(), sf::Vector2f((position.x + x) * ITile::TILE_SIZE, (position.y + y) * ITile::TILE_SIZE));
+                manager.add(std::make_shared<SandTile>(), tilePos);
             }
         }
     }
