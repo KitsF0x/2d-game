@@ -1,10 +1,10 @@
 add_executable(${PROJECT_NAME}-tests
     # Test 
-    "managers/TEST_GameObjectsManager.cpp" 
-    "managers/TEST_TexturesManager.cpp"
-    "managers/TEST_TilesManager.cpp"
-    "core/TEST_Camera.cpp"
-    "core/TEST_DeltaTime.cpp"
+    "content/managers/TEST_GameObjectsManager.cpp" 
+    "content/managers/TEST_TexturesManager.cpp"
+    "content/managers/TEST_TilesManager.cpp"
+    "system/game-system/TEST_Camera.cpp"
+    "system/game-system/TEST_DeltaTime.cpp"
     "game-objects/TEST_GameObjectMover.cpp"
     "map/TEST_RandomTileGenerator.cpp"
 
