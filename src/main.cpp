@@ -12,6 +12,8 @@
 #include "Camera.hpp"
 #include "RandomTileGenerator.hpp"
 #include "RockGameObject.hpp"
+#include "GuiManager.hpp"
+#include "Cursor.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -37,6 +39,10 @@ int main(int argc, char *argv[])
     kf::GameObjectsManager gameObjectsManager{};
     gameObjectsManager.add(std::make_shared<kf::PlayerGameObject>(), texturesManager);
     gameObjectsManager.add(std::make_shared<kf::RockGameObject>(), texturesManager);
+
+    // Gui
+    kf::GuiManager guiManager{};
+    guiManager.add(std::make_shared<kf::Cursor>(window));
 
     kf::Camera camera{window};
     std::shared_ptr<kf::IGameObject> player = gameObjectsManager.getGameObjectsByName("Player").at(0);
@@ -69,8 +75,12 @@ int main(int argc, char *argv[])
         window.clear();
         camera.update(player->getPosition());
         tilesManager.drawAll(window);
+
         gameObjectsManager.updateAll(deltaTime.getDeltaTime());
         gameObjectsManager.drawAll(window);
+
+        guiManager.updateAll(deltaTime.getDeltaTime());
+        guiManager.drawAll(window);
 
         // Delta time
         window.display();

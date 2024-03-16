@@ -3,6 +3,7 @@ add_executable(${PROJECT_NAME}-tests
     "content/managers/TEST_GameObjectsManager.cpp" 
     "content/managers/TEST_TexturesManager.cpp"
     "content/managers/TEST_TilesManager.cpp"
+    "content/managers/TEST_AManager.cpp"
     "system/game-system/TEST_Camera.cpp"
     "system/game-system/TEST_DeltaTime.cpp"
     "game-objects/TEST_GameObjectMover.cpp"
@@ -11,6 +12,8 @@ add_executable(${PROJECT_NAME}-tests
     # Mocks
     "mocks/MockGameObject.cpp"
     "mocks/MockTile.cpp"
+    "mocks/MockAManager.cpp"
+    "mocks/MockIManageable.cpp"
 )
 target_include_directories(${PROJECT_NAME}-tests PUBLIC managers mocks)
 target_link_libraries(${PROJECT_NAME}-tests PRIVATE 
@@ -24,4 +27,5 @@ target_link_libraries(${PROJECT_NAME}-tests PRIVATE
     game-system
     tiles
     map
+    entities-interfaces
 )
