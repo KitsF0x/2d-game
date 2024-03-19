@@ -11,5 +11,6 @@ namespace kf
         void updateAll(float deltaTime) override;
         void drawAll(sf::RenderWindow &window) override;
         void handleEvents(sf::Event &event);
+        void popTopState();
     };
 }

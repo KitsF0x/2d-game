@@ -1,7 +1,7 @@
 #include "GamePlayState.hpp"
 
-kf::GamePlayState::GamePlayState(kf::TexturesManager &texturesManager, sf::RenderWindow &window)
-    : window(window)
+kf::GamePlayState::GamePlayState(kf::TexturesManager &texturesManager, sf::RenderWindow &window, kf::StatesManager &statesManager)
+    : window(window), statesManager(statesManager)
 {
     tilesManager = new kf::TilesManager{texturesManager};
     randomTileGenerator.generate(*tilesManager, {0.0f, 0.0f});
@@ -27,6 +27,13 @@ void kf::GamePlayState::handleEvents(sf::Event &event)
         else if (event.mouseWheel.delta == -1)
         {
             camera->zoomOut();
+        }
+    }
+    if (event.type == sf::Event::KeyPressed)
+    {
+        if (event.key.code == sf::Keyboard::E)
+        {
+            statesManager.add(std::make_shared<kf::InventoryState>(statesManager));
         }
     }
 }

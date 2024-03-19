@@ -10,6 +10,8 @@
 #include "PlayerGameObject.hpp"
 #include "RockGameObject.hpp"
 #include "Cursor.hpp"
+#include "InventoryState.hpp"
+#include "StatesManager.hpp"
 
 namespace kf
 {
@@ -23,11 +25,12 @@ namespace kf
         kf::Camera *camera;
 
         sf::RenderWindow &window;
+        kf::StatesManager &statesManager;
 
         std::shared_ptr<kf::IGameObject> player;
 
     public:
-        GamePlayState(kf::TexturesManager &texturesManager, sf::RenderWindow &window);
+        GamePlayState(kf::TexturesManager &texturesManager, sf::RenderWindow &window, kf::StatesManager &statesManager);
         void handleEvents(sf::Event &event) override;
         void draw(sf::RenderWindow &window) override;
         void update(float deltaTime) override;

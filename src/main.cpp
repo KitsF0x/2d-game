@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     sf::Time secondMeasurement;
 
     kf::StatesManager statesManager;
-    statesManager.add(std::make_shared<kf::GamePlayState>(texturesManager, window));
+    statesManager.add(std::make_shared<kf::GamePlayState>(texturesManager, window, statesManager));
 
     while (window.isOpen())
     {
