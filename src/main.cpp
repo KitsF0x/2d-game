@@ -15,6 +15,9 @@
 #include "GuiManager.hpp"
 #include "Cursor.hpp"
 
+#include "StatesManager.hpp"
+#include "GamePlayState.hpp"
+
 int main(int argc, char *argv[])
 {
     // Textures
@@ -30,22 +33,8 @@ int main(int argc, char *argv[])
     sf::Time firstMeasurement;
     sf::Time secondMeasurement;
 
-    // Tiles
-    kf::TilesManager tilesManager{texturesManager};
-    kf::RandomTileGenerator randomTileGenerator{20, 20};
-    randomTileGenerator.generate(tilesManager, {0.0f, 0.0f});
-
-    // Game objects
-    kf::GameObjectsManager gameObjectsManager{};
-    gameObjectsManager.add(std::make_shared<kf::PlayerGameObject>(), texturesManager);
-    gameObjectsManager.add(std::make_shared<kf::RockGameObject>(), texturesManager);
-
-    // Gui
-    kf::GuiManager guiManager{};
-    guiManager.add(std::make_shared<kf::Cursor>(window));
-
-    kf::Camera camera{window};
-    std::shared_ptr<kf::IGameObject> player = gameObjectsManager.getGameObjectsByName("Player").at(0);
+    kf::StatesManager statesManager;
+    statesManager.add(std::make_shared<kf::GamePlayState>(texturesManager, window));
 
     while (window.isOpen())
     {
@@ -57,30 +46,14 @@ int main(int argc, char *argv[])
             {
                 window.close();
             }
-
-            if (event.type == sf::Event::MouseWheelMoved)
-            {
-                if (event.mouseWheel.delta == 1)
-                {
-                    camera.zoomIn();
-                }
-                else if (event.mouseWheel.delta == -1)
-                {
-                    camera.zoomOut();
-                }
-            }
+            statesManager.handleEvents(event);
         }
 
         // Render
         window.clear();
-        camera.update(player->getPosition());
-        tilesManager.drawAll(window);
 
-        gameObjectsManager.updateAll(deltaTime.getDeltaTime());
-        gameObjectsManager.drawAll(window);
-
-        guiManager.updateAll(deltaTime.getDeltaTime());
-        guiManager.drawAll(window);
+        statesManager.drawAll(window);
+        statesManager.updateAll(deltaTime.getDeltaTime());
 
         // Delta time
         window.display();

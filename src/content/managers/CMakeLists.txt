@@ -6,6 +6,7 @@ add_library(managers STATIC
     TilesManager.cpp
     GuiManager.cpp
     AManager.cpp
+    StatesManager.cpp
 )
 
 target_include_directories(managers PUBLIC .)
